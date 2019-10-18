@@ -151,7 +151,7 @@ public class UserControllerTest {
 			LOGGER.info("---------- Searching for Utilisateur ----------");
 			User userFound = userService.getUserById(new Long(50));
 			
-			//vérifie que c'est la bonne personne
+			//vérifie que c'est la bonne personnegi
 			LOGGER.info("---------- Verifying  Utilisateur ----------");
 			assertEquals(userFound.getUserName(), user.getUserName());
 		}
@@ -169,16 +169,23 @@ public class UserControllerTest {
         verify(userServiceToMock).addUser(userTest);
     }
 	
+	// nnnnmmmmmmmmmmmmmmmmm
 	@Test
 	public void statusMethod() throws Exception {
+		LOGGER.info("--------------- Testing statusMethod Method ---------------");
 		try {
+			LOGGER.info("---------- Constructing Utilisateur ----------");
 			User user = new User(50, "sala7");
 			String inputJson;
-			MvcResult mvcResult;
+			LOGGER.info("---------- Serializing Utilisateur Object ----------");
 			inputJson = this.mapToJson(user);
+			MvcResult mvcResult;
+			LOGGER.info("---------- Mocking Context Webservice and invoking the webservice ----------");
 			mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri + "/adduser")
 					.contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
+			LOGGER.info("---------- Getting HTTP Status ----------");
 			int status = mvcResult.getResponse().getStatus();
+			LOGGER.info("---------- Verifying  Utilisateur ----------");
 			assertEquals(200, status);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
